@@ -1,0 +1,26 @@
+{
+  "name": "pywebview-vue3-starter-template",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "uv": "cd packages/main && uv",
+    "dev": "concurrently \"pnpm dev:renderer\" \"pnpm dev:main\"",
+    "dev:renderer": "pnpm --filter renderer dev",
+    "dev:main": "cd packages/main && uv run --env-file .env main.py",
+    "build:renderer": "pnpm --filter renderer build",
+    "build:win": "pnpm build:renderer && cd packages/main && uv run nuitka --onefile --output-dir=../../dist --windows-console-mode=attach --include-data-dir=../renderer/dist=renderer_dist --windows-icon-from-ico=../renderer/public/favicon.ico --assume-yes-for-downloads main.py",
+    "build:mac": "pnpm build:renderer && cd packages/main && uv run nuitka --mode=app --output-dir=../../dist --include-data-dir=../renderer/dist=renderer_dist --macos-create-app-bundle --macos-app-icon=../renderer/public/favicon.ico --assume-yes-for-downloads main.py",
+    "lint": "pnpm --recursive lint",
+    "lint:fix": "pnpm --recursive lint:fix",
+    "clean": "git clean -fdX",
+    "postinstall": "pnpm install:main",
+    "install:main": "cd packages/main && uv sync"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.0",
+    "cpr": "^3.0.1",
+    "pnpm": "^9.1.0"
+  }
+}

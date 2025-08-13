@@ -20,7 +20,6 @@
   },
   "devDependencies": {
     "concurrently": "^9.2.0",
-    "cpr": "^3.0.1",
     "pnpm": "^9.1.0"
   }
 }

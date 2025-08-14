@@ -6,7 +6,7 @@
   ],
   "scripts": {
     "uv": "cd packages/main && uv",
-    "dev": "concurrently --kill-others --names main,renderer \"pnpm dev:renderer\" \"pnpm dev:main\"",
+    "dev": "concurrently --kill-others --names renderer,main \"pnpm dev:renderer\" \"pnpm dev:main\"",
     "dev:renderer": "pnpm --filter renderer dev",
     "dev:main": "cd packages/main && uv run --env-file .env main.py",
     "build:renderer": "pnpm --filter renderer build",
